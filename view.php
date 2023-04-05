@@ -24,15 +24,21 @@ if (isset($_GET['success'])) {
 
 include "php/header.php"; ?>
 
-<h1><?= $project['title'] ?></h1>
-<a href="index.php">Back to Home page</a>
+<div id="threejs-container"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/project.js"></script>
 
-<?= $editResponseMessage ?>
+<div id="project-info">
+    <h1 id="title"><?= $project['title'] ?></h1>
+    <a href="index.php">Back to Home page</a>
 
-<div>ADDRESS : <?= $project['address'] ?> </div>
-<div>ABOUT : <?= $project['description'] ?> </div>
-<div>TARGET : <?= $project['target'] ?> ETH </div>
-<div>DEADLINE : <?= $project['deadline'] ?> </div>
-<div>AMOUNT COLLECTED : <?= $project['amount_collected'] ?> ETH </div>
-<div>TITLE : <?= $project['title'] ?> </div>
-<img src="<?= $project['image'] ?>" class="img-responsive">
+    <?= $editResponseMessage ?>
+
+    <div class="small-padding">ADDRESS : <?= $project['address'] ?> </div>
+    <div class="small-padding">ABOUT : <?= $project['description'] ?> </div>
+    <div class="small-padding">TARGET : <?= $project['target'] ?> ETH </div>
+    <div class="small-padding">DEADLINE : <?= $project['deadline'] ?> </div>
+    <div class="small-padding">AMOUNT COLLECTED : <?= $project['amount_collected'] ?> ETH </div>
+    <div class="small-padding">TITLE : <?= $project['title'] ?> </div>
+    <!-- <img src="<?= $project['image'] ?>" class="img-responsive"> -->
+</div>

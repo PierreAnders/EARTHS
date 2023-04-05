@@ -15,13 +15,13 @@ const sphereGeometry7 = new THREE.SphereGeometry(0.5, 32, 32);
 
 
 
-const physTexture = new THREE.TextureLoader().load('img/galaxy.jpeg');
-const medTexture = new THREE.TextureLoader().load('cometes.jpeg');
-const ecoTexture = new THREE.TextureLoader().load('earth.jpg');
-const earthTexture = new THREE.TextureLoader().load('stone.jpg');
-const stoneTexture = new THREE.TextureLoader().load('terrecuite.jpg');
-const fireTexture = new THREE.TextureLoader().load('beton2.jpg');
-const waterTexture = new THREE.TextureLoader().load('carreaux.jpg');
+const physTexture = new THREE.TextureLoader().load('images/galaxy.jpeg');
+const medTexture = new THREE.TextureLoader().load('images/cometes.jpeg');
+const ecoTexture = new THREE.TextureLoader().load('images/earth.jpg');
+const earthTexture = new THREE.TextureLoader().load('images/stone.jpg');
+const stoneTexture = new THREE.TextureLoader().load('images/terrecuite.jpg');
+const fireTexture = new THREE.TextureLoader().load('images/beton2.jpg');
+const waterTexture = new THREE.TextureLoader().load('images/carreaux.jpg');
 
 
 const physMaterial = new THREE.MeshBasicMaterial({ map: physTexture });
@@ -61,13 +61,13 @@ scene.add(fireSphere);
 scene.add(waterSphere);
 
 
-physSphere.userData.url = "https://physics.example.com";
-medSphere.userData.url = "https://medicine.example.com";
-ecoSphere.userData.url = "https://economy.example.com";
-earthSphere.userData.url = "https://earth.example.com";
-stoneSphere.userData.url = "https://stone.example.com";
-fireSphere.userData.url = "https://fire.example.com";
-waterSphere.userData.url = "https://water.example.com";
+physSphere.userData.url = "http://localhost/earthwise/view.php?id=4";
+medSphere.userData.url = "http://localhost/earthwise/view.php?id=5";
+ecoSphere.userData.url = "http://localhost/earthwise/view.php?id=6";
+earthSphere.userData.url = "http://localhost/earthwise/view.php?id=7";
+stoneSphere.userData.url = "http://localhost/earthwise/view.php?id=8";
+fireSphere.userData.url = "http://localhost/earthwise/view.php?id=9";
+waterSphere.userData.url = "http://localhost/earthwise/view.php?id=10";
 
 
 function createCurvedLineBetweenObjects(object1, object2, segments, color, yOffset) {
@@ -230,5 +230,5 @@ addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
     renderer.setSize(window.innerWidth, window.innerHeight)
-  })
+})
 
