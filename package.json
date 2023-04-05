@@ -1,0 +1,9 @@
+{
+  "name": "earthwise",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "three": "^0.151.3",
+    "three.interaction": "^0.2.3"
+  }
+}

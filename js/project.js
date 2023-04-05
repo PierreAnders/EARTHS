@@ -21,9 +21,9 @@ const physSphere = new THREE.Mesh(sphereGeometry1, physMaterial);
 const medSphere = new THREE.Mesh(sphereGeometry2, medMaterial);
 const ecoSphere = new THREE.Mesh(sphereGeometry3, ecoMaterial);
 
-physSphere.position.set(9, 8, -10);
-medSphere.position.set(-2, -8, -8);
-ecoSphere.position.set(0, 0, 0);
+physSphere.position.set(10, 7, -10);
+medSphere.position.set(-1, -9, -8);
+ecoSphere.position.set(1, -1, 0);
 
 scene.add(physSphere);
 scene.add(medSphere);
@@ -78,9 +78,9 @@ camera.position.z = 10;
 function animate() {
     requestAnimationFrame(animate);
 
-    physSphere.rotation.y += 0.002;
-    medSphere.rotation.y += 0.002;
-    ecoSphere.rotation.y += 0.002;
+    physSphere.rotation.y += 0.001;
+    medSphere.rotation.y += 0.001;
+    ecoSphere.rotation.y += 0.001;
 
     physEcoLine1.userData.update();
     physMedLine2.userData.update();

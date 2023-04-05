@@ -10,27 +10,29 @@
             $deleteResponseMessage = "An error has occurred";
         }
     }
-
     $statement = "SELECT * FROM projects";
     $result = mysqli_query($conn, $statement);
-
-    include 'php/header.php'
     ?>
+
+    <?php include 'php/header.php' ?>
 
     <div class="container">
         <div id="all-projects-info">
-        <h1>EARTH'S</h1>
 
             <?= $deleteResponseMessage ?>
 
             <?php while ($row = mysqli_fetch_array($result)) { ?>
-                <strong> Title : </strong> <?= $row['title'] ?> <br>
-                <strong> Address: </strong> <?= $row['address'] ?> <br>
-                <strong> Description: </strong> <?= $row['description'] ?> <br>
-                <strong> Target: </strong> <?= $row['target'] ?> ETH <br>
-                <strong> Deadline: </strong> <?= $row['deadline'] ?> days left <br>
-                <strong> Amount Collected: </strong> <?= $row['amount_collected'] ?> ETH <br>
-                <a href="/earthwise/view.php?id=<?= $row['id'] ?>"> <img src="<?= $row['image'] ?>" class="img-responsive"> </a>
+                <div class="pt-3rem index-title"> <?= strtoupper($row['title']) ?> </div>
+                <div class="pt-02rem">
+                    <a href="/earthwise/view.php?id=<?= $row['id'] ?>"> <img src="<?= $row['image'] ?>" class="img-responsive"> </a>
+                </div>
+                <div class="pt-08rem"> ADDRESS : </div> 
+                <div class="pt-02rem"> <?= $row['address'] ?> </div>
+                <div class="pt-08rem"> ABOUT : </div> 
+                <div class="pt-02rem"> <?= $row['description'] ?> </div>
+                <div class="pt-08rem"> TARGET : <?= $row['target'] ?> ETH </div>
+                <div class="pt-08rem"> DEADLINE : <?= $row['deadline'] ?> days left </div>
+                <div class="pt-08rem"> AMOUNT COLLECTED : <?= $row['amount_collected'] ?> ETH </div>
             <?php
             }
             ?>

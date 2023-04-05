@@ -29,16 +29,19 @@ include "php/header.php"; ?>
 <script src="js/project.js"></script>
 
 <div id="project-info">
-    <h1 id="title"><?= $project['title'] ?></h1>
-    <a href="index.php">Back to Home page</a>
-
+    <h1 class="pt-2rem" id="title"><?= $project['title'] ?></h1>
+    
     <?= $editResponseMessage ?>
-
-    <div class="small-padding">ADDRESS : <?= $project['address'] ?> </div>
-    <div class="small-padding">ABOUT : <?= $project['description'] ?> </div>
-    <div class="small-padding">TARGET : <?= $project['target'] ?> ETH </div>
-    <div class="small-padding">DEADLINE : <?= $project['deadline'] ?> </div>
-    <div class="small-padding">AMOUNT COLLECTED : <?= $project['amount_collected'] ?> ETH </div>
-    <div class="small-padding">TITLE : <?= $project['title'] ?> </div>
+    
+    <div class="pt-2rem">ADDRESS :</div> 
+    <div class="pt-02rem"> <?= $project['address'] ?> </div>
+    <div class="pt-2rem">ABOUT : </div> 
+    <div class="pt-02rem"> <?= $project['description'] ?> </div>
+    <div class="pt-2rem">TARGET : <?= $project['target'] ?> ETH </div>
+    <div class="pt-2rem">DEADLINE : <?= $project['deadline'] ?> Days</div>
+    <div class="pt-2rem">AMOUNT COLLECTED : <?= $project['amount_collected'] ?> ETH </div>
     <!-- <img src="<?= $project['image'] ?>" class="img-responsive"> -->
+    <div class="pt-2rem">
+        <a href="home.php " class="btn-blue">Back to Home page</a>
+    </div>
 </div>

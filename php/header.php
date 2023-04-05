@@ -10,3 +10,9 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="js/blockchain.js"></script> -->
 </head>
+<div id="navbar">
+    <a href="home.php " class="btn-navbar">Home</a>
+    <a href="index.php " class="btn-navbar">Projects</a>
+    <a href="concept.php " class="btn-navbar">Concept</a>
+    <a href="Profile.php " class="btn-navbar">Profile</a>
+</div>
