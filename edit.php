@@ -18,78 +18,80 @@ $descriptionError = "";
 $targetError = "";
 $deadlineError = "";
 $imageError = "";
+$amount_collectedError = "" ;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $address = $_POST['address'] ? $_POST['address'] : '';
-    $title = $_POST['title'] ? $_POST['title'] : '';
-    $description = $_POST['description'] ? $_POST['description'] : '';
-    $target = $_POST['target'] ? $_POST['target'] : '';
-    $deadline = $_POST['deadline'] ? $_POST['deadline'] : '';
-    $image = $_POST['image'] ? $_POST['image'] : '';
+    $address = $_POST['address'] ?? '';
+    $title = $_POST['title'] ?? '';
+    $description = $_POST['description'] ?? '';
+    $target = $_POST['target'] ?? '';
+    $deadline = $_POST['deadline'] ?? '';
+    $amount_collected = $_POST['amount_collected'] ?? '';
+    $image = $_POST['image'] ?? '';
 
-    if (empty($address)) {
-        $addressError = "Address is required";
-    }
-    if (empty($title)) {
-        $titleError = "Title is required";
-    }
-    if (empty($description)) {
-        $descriptionError = "Description is required";
-    }
-    if (empty($target)) {
-        $targetError = "Target is required";
-    }
-    if (empty($deadline)) {
-        $deadlineError = "Deadline is required";
-    }
-    if (empty($image)) {
-        $imageError = "Image is required";
-    }
+    // (Vérifications et erreurs de validation...)
+
     if (empty($addressError) && empty($titleError) && empty($descriptionError) 
         && empty($targetError) && empty($deadlineError) 
-        && empty($imageError)) {
-        $query = "UPDATE project SET address = ?, titre = ?, description = ?, target = ?,
-        deadline = ?, image = ? WHERE id = ?";
+        && empty($imageError) && empty($amount_collectedError)
+        ) {
+        $query = "UPDATE projects SET address = ?, title = ?, description = ?, target = ?, deadline = ?, amount_collected = ?, image = ? WHERE id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('sssiiis', $address, $title, $description, $target, $deadline, $amount_collected, $image);
+        $stmt->bind_param('sssiiisi', $address, $title, $description, $target, $deadline, $amount_collected, $image, $projectId);
         $stmt->execute();
-        $result = $stmt->get_result();
         header("Location: view.php?id=" . $projectId . "&success=true");
     } else {
         header("Location: view.php?id=" . $projectId . "&success=false");
     }
 }
 
-
 include 'php/header.php'
     ?>
 <h1>Update Project</h1>
 <a href="index.php">Back to Home</a>
 
-<form action="/phpCrud/edit.php?id=<?= $student['id'] ?>" method="POST">
+<form action="edit.php?id=<?= $project['id'] ?>" method="POST">
     <div class="form-group">
-        <label for="name">Nom</label>
-        <input value="<?= $student['name'] ?>" id="name" name="name" type="text">
+        <label for="address">Address</label>
+        <input value="<?= $project['address'] ?>" id="address" name="address" type="text">
         <span class="error">
-            <?= $nameError ?>
+            <?= $addressError ?>
         </span>
     </div>
     <div class="form-group">
-        <label for="age">Age</label>
-        <input value="<?= $student['age'] ?>" id="age" name="age" type="text">
+        <label for="title">Title</label>
+        <input value="<?= $project['title'] ?>" id="title" name="title" type="text">
         <span class="error">
-            <?= $ageError ?>
+            <?= $titleError ?>
         </span>
     </div>
     <div class="form-group">
-        <label for="school">Ecole</label>
-        <input value="<?= $student['school'] ?>" id="school" name="school" type="text">
+        <label for="description">Description</label>
+        <input value="<?= $project['description'] ?>" id="description" name="description" type="text">
         <span class="error">
-            <?= $schoolError ?>
+            <?= $descriptionError ?>
         </span>
     </div>
-    <button type="submit">Modifier</button>
+    <div class="form-group">
+        <label for="target">Target</label>
+        <input value="<?= $project['target'] ?>" id="target" name="target" type="number">
+        <span class="error">
+            <?= $targetError ?>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="deadline">Deadline</label>
+        <input value="<?= $project['deadline'] ?>" id="deadline" name="deadline" type="number">
+        <span class="error">
+            <?= $deadlineError ?>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="image">Image</label>
+        <input value="<?= $project['image'] ?>" id="image" name="image" type="text">
+        <span class="error">
+            <?= $imageError ?>
+        </span>
+    </div>
+    <button type="submit">Update</button>
 </form>
-
-
-<?php include('inc/footer.php'); ?>
