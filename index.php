@@ -32,7 +32,12 @@
                 <div class="pt-02rem"> <?= $row['description'] ?> </div>
                 <div class="pt-08rem"> TARGET : <?= $row['target'] ?> ETH </div>
                 <div class="pt-08rem"> DEADLINE : <?= $row['deadline'] ?> days left </div>
-                <div class="pt-08rem"> AMOUNT COLLECTED : <?= $row['amount_collected'] ?> ETH </div>
+                <div class="pt-08rem flex"> 
+                    AMOUNT COLLECTED : <?= $row['amount_collected'] ?> ETH 
+                    <a class="btn-blue flex-end w-60-px" href="/earthwise/donate.php?id=<?= $project['id'] ?>">donate</a>
+                </div>
+                <div>. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</div>
+
             <?php
             }
             ?>

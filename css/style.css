@@ -125,3 +125,16 @@ canvas {
 .index-title {
   font-weight: 700;
 }
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.w-60-px {
+  width: 60px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}

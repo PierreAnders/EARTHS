@@ -42,6 +42,8 @@ include "php/header.php"; ?>
     <div class="pt-2rem">AMOUNT COLLECTED : <?= $project['amount_collected'] ?> ETH </div>
     <!-- <img src="<?= $project['image'] ?>" class="img-responsive"> -->
     <div class="pt-2rem">
-        <a href="home.php " class="btn-blue">Back to Home page</a>
+        <a href="home.php " class="btn-blue"><<<</a>
+        <a class="btn-blue" href="/earthwise/edit.php?id=<?= $project['id'] ?>">edit</a>
+        <a class="btn-blue" href="/earthwise/delete.php?id=<?= $project['id'] ?>">delete</a>
     </div>
 </div>
