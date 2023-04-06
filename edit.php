@@ -44,54 +44,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: view.php?id=" . $projectId . "&success=false");
     }
 }
+?>
 
-include 'php/header.php'
-    ?>
-<h1>Update Project</h1>
-<a href="index.php">Back to Home</a>
+<?php include 'php/header.php' ?>
 
-<form action="edit.php?id=<?= $project['id'] ?>" method="POST">
-    <div class="form-group">
+<form action="edit.php?id=<?= $project['id'] ?>" method="POST" class="create-form">
         <label for="address">Address</label>
         <input value="<?= $project['address'] ?>" id="address" name="address" type="text">
         <span class="error">
             <?= $addressError ?>
         </span>
-    </div>
-    <div class="form-group">
+    <div class="pt-1rem"></div>
         <label for="title">Title</label>
         <input value="<?= $project['title'] ?>" id="title" name="title" type="text">
         <span class="error">
             <?= $titleError ?>
         </span>
-    </div>
-    <div class="form-group">
-        <label for="description">Description</label>
-        <input value="<?= $project['description'] ?>" id="description" name="description" type="text">
+    <div class="pt-1rem"></div>
+    <textarea id="description" name="description" rows="6" cols="60"><?= $project['description'] ?></textarea>
         <span class="error">
             <?= $descriptionError ?>
         </span>
-    </div>
-    <div class="form-group">
+    <div class="pt-1rem"></div>
         <label for="target">Target</label>
         <input value="<?= $project['target'] ?>" id="target" name="target" type="number">
         <span class="error">
             <?= $targetError ?>
         </span>
-    </div>
-    <div class="form-group">
+    <div class="pt-1rem"></div>
         <label for="deadline">Deadline</label>
         <input value="<?= $project['deadline'] ?>" id="deadline" name="deadline" type="number">
         <span class="error">
             <?= $deadlineError ?>
         </span>
-    </div>
-    <div class="form-group">
+    <div class="pt-1rem"></div>
         <label for="image">Image</label>
         <input value="<?= $project['image'] ?>" id="image" name="image" type="text">
         <span class="error">
             <?= $imageError ?>
         </span>
+    <div class="flex pt-1rem">
+        <a href="home.php" class="btn-blue mr-1"> <<< </a>
+        <a class="btn-blue ml-1" type="submit">Update</a>
     </div>
-    <button type="submit">Update</button>
 </form>
