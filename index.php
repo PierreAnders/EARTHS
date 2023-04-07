@@ -10,8 +10,8 @@
             $deleteResponseMessage = "An error has occurred";
         }
     }
-    $statement = "SELECT * FROM projects";
-    $result = mysqli_query($conn, $statement);
+    $articles = $pdo->prepare('SELECT * FROM projects');
+    $articles->execute();
     ?>
 
     <?php include 'php/header.php' ?>
@@ -21,7 +21,7 @@
 
             <?= $deleteResponseMessage ?>
 
-            <?php while ($row = mysqli_fetch_array($result)) { ?>
+            <?php foreach ($articles as $row) { ?>
                 <div class="pt-3rem index-title"> <?= strtoupper($row['title']) ?> </div>
                 <div class="pt-02rem">
                     <a href="/earthwise/view.php?id=<?= $row['id'] ?>"> <img src="<?= $row['image'] ?>" class="img-responsive"> </a>

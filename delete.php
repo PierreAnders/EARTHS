@@ -6,12 +6,12 @@ if (!isset($projectId)) {
     header("Location: index.php");
 }
 
-$query = "DELETE FROM projects WHERE id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param('i', $projectId);
+$stmt = $pdo->prepare("SELECT * FROM projects WHERE id = ?");
+$stmt->bindValue($projectId, PDO::PARAM_INT);
+
 try {
     $stmt->execute();
-    $result = $stmt->get_result();
+    $project = $stmt->fetch(PDO::FETCH_ASSOC);
     header("Location: index.php?successDelete=true");
 } catch (Exception $e) {
     header("Location: index.php?successDelete=false");

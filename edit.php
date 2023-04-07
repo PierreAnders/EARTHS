@@ -1,16 +1,8 @@
 <?php
 require 'php/config.php';
 
-$projectId = $_GET['id'] ? $_GET['id'] : null;
-if (!isset($projectId)) {
-    header("Location: index.php");
-}
-$query = "SELECT * FROM projects WHERE id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param('i', $projectId);
-$stmt->execute();
-$result = $stmt->get_result();
-$project = mysqli_fetch_assoc($result);
+
+    
 
 $addressError = "";
 $titleError = "";
@@ -20,7 +12,9 @@ $deadlineError = "";
 $imageError = "";
 $amount_collectedError = "" ;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_GET['id'])) {
+    if (!empty($_POST)) {
+    $id = $_POST['id'] ?? '';
     $address = $_POST['address'] ?? '';
     $title = $_POST['title'] ?? '';
     $description = $_POST['description'] ?? '';
@@ -31,18 +25,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // (Vérifications et erreurs de validation...)
 
-    if (empty($addressError) && empty($titleError) && empty($descriptionError) 
-        && empty($targetError) && empty($deadlineError) 
-        && empty($imageError) && empty($amount_collectedError)
-        ) {
-        $query = "UPDATE projects SET address = ?, title = ?, description = ?, target = ?, deadline = ?, amount_collected = ?, image = ? WHERE id = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param('sssiiisi', $address, $title, $description, $target, $deadline, $amount_collected, $image, $projectId);
-        $stmt->execute();
-        header("Location: view.php?id=" . $projectId . "&success=true");
+    $stmt = $pdo->prepare("UPDATE projects SET id = ?, address = ?, title = ?, description = ?, target = ?, deadline = ?, amount_collected = ?, image = ? WHERE id = ?");
+$values = [$id, $address, $title, $description, $target, $deadline, $amount_collected, $image, $id];
+$stmt->execute($values);
+    } if ($stmt->execute($values)) {
+        echo "Les modifications ont été enregistrées avec succès.";
     } else {
-        header("Location: view.php?id=" . $projectId . "&success=false");
+        echo "Erreur lors de l'enregistrement des modifications.";
     }
+
+    $stmt = $pdo->prepare("SELECT * FROM projects WHERE id = ?");
+        $stmt->execute([$_GET['id']]);
+        $project = $stmt->fetch(PDO::FETCH_ASSOC);
+    
 }
 ?>
 
@@ -85,6 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </span>
     <div class="flex pt-1rem">
         <a href="home.php" class="btn-blue mr-1"> <<< </a>
-        <a class="btn-blue ml-1" type="submit">Update</a>
+        <button class="btn-blue ml-1" type="submit">Mis à jour</button>
     </div>
 </form>

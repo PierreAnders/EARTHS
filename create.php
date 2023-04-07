@@ -40,13 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         && empty($targetError) && empty($deadlineError)
         && empty($imageError)
     ) {
-        $query = "INSERT INTO projects (address, title, description, target, deadline, amount_collected,
-        image) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param('sssiiis', $address, $title, $description, $target, $deadline, $amount_collected, $image);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $stmt = $pdo->prepare('INSERT INTO projects (address, title, description, target, deadline, amount_collected,
+        image) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$address, $title, $description, $target, $deadline, $amount_collected, $image]);
         header("Location: index.php");
+        exit(); 
     }
 }
 ?>
@@ -93,6 +91,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </span>
     <div class="flex pt-1rem">
         <a href="home.php" class="btn-blue mr-1"> <<< </a>
-        <a class="btn-blue ml-1" type="submit">Create</a>
+        <button class="btn-blue ml-1" type="submit">Create</button>
     </div>
 </form>

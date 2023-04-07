@@ -4,23 +4,15 @@ require 'php/config.php';
 $projectId = $_GET['id'] ?? null;
 if (!isset($projectId)) {
     header("Location: index.php");
+    exit();
 }
 
-$query = "SELECT * FROM projects WHERE id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param('i', $projectId);
+$stmt = $pdo->prepare("SELECT * FROM projects WHERE id = ?");
+$stmt->bindParam(1, $projectId, PDO::PARAM_INT);
 $stmt->execute();
-$result = $stmt->get_result();
-$project = mysqli_fetch_assoc($result);
+$project = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$editResponseMessage= "";
-if (isset($_GET['success'])) {
-    if ($_GET['success'] == true) {
-        $ediResponseMessage = "Project changed successfully";
-    } else {
-        $ediResponseMessage = 'An error has occurred';
-    }
-}
+
 
 include "php/header.php"; ?>
 
@@ -30,8 +22,8 @@ include "php/header.php"; ?>
 
 <div id="project-info">
     <h1 class="pt-2rem" id="title"><?= $project['title'] ?></h1>
-    
-    <?= $editResponseMessage ?>
+    <h1 class="pt-2rem" id="title"><?= $project['id'] ?></h1>
+
     
     <div class="pt-2rem">ADDRESS :</div> 
     <div class="pt-02rem"> <?= $project['address'] ?> </div>
