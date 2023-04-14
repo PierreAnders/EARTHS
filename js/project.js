@@ -29,9 +29,9 @@ scene.add(physSphere);
 scene.add(medSphere);
 scene.add(ecoSphere);
 
-physSphere.userData.url = "https://physics.example.com";
-medSphere.userData.url = "https://medicine.example.com";
-ecoSphere.userData.url = "https://economy.example.com";
+// physSphere.userData.url = "https://physics.example.com";
+// medSphere.userData.url = "https://medicine.example.com";
+// ecoSphere.userData.url = "https://economy.example.com";
 
 function createCurvedLineBetweenObjects(object1, object2, segments, color, yOffset) {
     const points = [];

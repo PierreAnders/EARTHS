@@ -49,8 +49,9 @@ h1 {
   font-weight: bold;
   color: #d3d3d3;
 }
+
 #threejs-container {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -212,4 +213,11 @@ textarea {
   background-color: black;
   border-radius: 5px;
   color: white;
+  position: relative;
+  z-index: 10;
 }
+/* 
+.comment-div {
+  position: relative;
+  z-index: 3;
+} */

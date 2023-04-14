@@ -9,12 +9,12 @@ $deadlineError = "";
 $imageError = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $address = $_POST['address'] ? $_POST['address'] : '';
-    $title = $_POST['title'] ? $_POST['title'] : '';
-    $description = $_POST['description'] ? $_POST['description'] : '';
-    $target = $_POST['target'] ? $_POST['target'] : '';
-    $deadline = $_POST['deadline'] ? $_POST['deadline'] : '';
-    $image = $_POST['image'] ? $_POST['image'] : '';
+    $address = $_POST['address'] ?? '';
+    $title = $_POST['title'] ?? '';
+    $description = $_POST['description'] ?? '';
+    $target = $_POST['target'] ?? '';
+    $deadline = $_POST['deadline'] ?? '';
+    $image = $_POST['image'] ?? '';
 
 
     if (empty($address)) {
@@ -43,8 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $pdo->prepare('INSERT INTO projects (address, title, description, target, deadline, amount_collected,
         image) VALUES (?, ?, ?, ?, ?, ?, ?)');
         $stmt->execute([$address, $title, $description, $target, $deadline, $amount_collected, $image]);
-        header("Location: index.php");
-        exit(); 
+        $project_id = $pdo->lastInsertId();
+        header("Location: view.php?id=" . $project_id);
+        exit();
     }
 }
 ?>
@@ -60,37 +61,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </span>
 
     <div class="pt-1rem"></div>
-        <label for="title">Title</label>
-        <input id="title" name="title" type="text">
-        <span class="error">
-            <?= $titleError ?>
-        </span>
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text">
+    <span class="error">
+        <?= $titleError ?>
+    </span>
     <div class="pt-1rem"></div>
-        <label for="description">Description</label>
-        <textarea id="description" name="description" rows="6" cols="60"></textarea>
-        <span class="error">
-            <?= $descriptionError ?>
-        </span>
+    <label for="description">Description</label>
+    <textarea id="description" name="description" rows="6" cols="60"></textarea>
+    <span class="error">
+        <?= $descriptionError ?>
+    </span>
     <div class="pt-1rem"></div>
-        <label for="target">Target</label>
-        <input id="target" name="target" type="text">
-        <span class="error">
-            <?= $targetError ?>
-        </span>
+    <label for="target">Target</label>
+    <input id="target" name="target" type="text">
+    <span class="error">
+        <?= $targetError ?>
+    </span>
     <div class="pt-1rem"></div>
-        <label for="deadline">Deadline</label>
-        <input id="deadline" name="deadline" type="text">
-        <span class="error">
-            <?= $deadlineError ?>
-        </span>
+    <label for="deadline">Deadline</label>
+    <input id="deadline" name="deadline" type="text">
+    <span class="error">
+        <?= $deadlineError ?>
+    </span>
     <div class="pt-1rem"></div>
-        <label for="image">Image URL</label>
-        <input id="image" name="image" type="text">
-        <span class="error">
-            <?= $imageError ?>
-        </span>
+    <label for="image">Image URL</label>
+    <input id="image" name="image" type="text">
+    <span class="error">
+        <?= $imageError ?>
+    </span>
     <div class="flex pt-1rem">
-        <a href="home.php" class="btn-blue mr-1"> <<< </a>
-        <button class="btn-blue ml-1" type="submit">Create</button>
+        <a href="home.php" class="btn-blue mr-1">
+            <<< </a>
+                <button class="btn-blue ml-1" type="submit">Create</button>
     </div>
 </form>
