@@ -14,7 +14,7 @@
          $_SESSION["addressName"]=ucfirst(strtolower($tab[0]["name"])).
          " ".strtoupper($tab[0]["name"]);
          $_SESSION["autorise"]="yes";
-         header("location:session.php");
+         header("location:index.php");
       }
       else
          $erreur="Wrong login or password!";

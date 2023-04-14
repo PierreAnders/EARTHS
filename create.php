@@ -1,5 +1,24 @@
 <?php
-require 'php/config.php';
+require_once 'php/config.php';
+include "php/header.php";
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
 
 $addressError = "";
 $titleError = "";
@@ -40,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         && empty($targetError) && empty($deadlineError)
         && empty($imageError)
     ) {
-        $stmt = $pdo->prepare('INSERT INTO projects (address, title, description, target, deadline, amount_collected,
-        image) VALUES (?, ?, ?, ?, ?, ?, ?)');
-        $stmt->execute([$address, $title, $description, $target, $deadline, $amount_collected, $image]);
+        $stmt = $pdo->prepare('INSERT INTO projects (user_id, address, title, description, target, deadline, amount_collected,
+        image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$user_id, $address, $title, $description, $target, $deadline, $amount_collected, $image]);
         $project_id = $pdo->lastInsertId();
         header("Location: view.php?id=" . $project_id);
         exit();
@@ -52,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- CODE HTML -->
 
-<?php include 'php/header.php' ?>
 <form action="create.php" method="POST" class="create-form">
     <label for="address">Address</label>
     <input id="address" name="address" type="text">

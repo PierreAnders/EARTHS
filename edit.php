@@ -11,7 +11,7 @@ $amount_collectedError = "";
 
 if (isset($_GET['id'])) {
     if (!empty($_POST)) {
-        $id = $_POST['id'] ?? '';
+        $id = $_GET['id'] ?? '';
         $address = $_POST['address'] ?? '';
         $title = $_POST['title'] ?? '';
         $description = $_POST['description'] ?? '';
@@ -22,17 +22,17 @@ if (isset($_GET['id'])) {
 
         $stmt = $pdo->prepare("UPDATE projects SET id = ?, address = ?, title = ?, description = ?, target = ?, deadline = ?, amount_collected = ?, image = ? WHERE id = ?");
         $values = [$id, $address, $title, $description, $target, $deadline, $amount_collected, $image, $id];
-        $stmt->execute($values);
-        if ($stmt->execute($values)) {
-            echo "Changes have been saved successfully.";
+        $success = $stmt->execute($values);
+        if ($success) {
+            echo "Les modifications ont été enregistrées avec succès.";
         } else {
-            echo "Error saving changes.";
+            echo "Erreur lors de l'enregistrement des modifications.";
         }
     }
-
     $stmt = $pdo->prepare("SELECT * FROM projects WHERE id = ?");
     $stmt->execute([$_GET['id']]);
     $project = $stmt->fetch(PDO::FETCH_ASSOC);
+
 }
 ?>
 

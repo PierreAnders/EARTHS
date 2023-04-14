@@ -20,7 +20,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 $isCreator = $userId == $project['user_id'];
-var_dump($isCreator);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['comment']) || empty($_POST['comment'])) {
@@ -56,7 +55,6 @@ $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="pt-2rem">TARGET : <?= $project['target'] ?> ETH </div>
     <div class="pt-2rem">DEADLINE : <?= $project['deadline'] ?> Days</div>
     <div class="pt-2rem">AMOUNT COLLECTED : <?= $project['amount_collected'] ?> ETH </div>
-    <?= $project['image'] ?>
 
     <?php if ($isCreator) : ?>
         <div class="pt-2rem">
@@ -68,7 +66,7 @@ $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php else : ?>
         <div class="pt-2rem">
             <a href="home.php" class="btn-blue">
-                <<<< /a>
+                <<< </a>
         </div>
     <?php endif; ?>
 </div>

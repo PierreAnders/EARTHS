@@ -15,5 +15,4 @@
     <a href="index.php " class="btn-navbar">Projects</a>
     <a href="create.php " class="btn-navbar">Create</a>
     <a href="concept.php " class="btn-navbar">Concept</a>
-    <a href="profile.php " class="btn-navbar">(O)</a>
 </div>
