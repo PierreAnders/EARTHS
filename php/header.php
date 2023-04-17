@@ -9,6 +9,7 @@
     <title>EarthWise</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
 </head>
 <div id="navbar">
     <a href="home.php " class="btn-navbar">EARTHS</a>

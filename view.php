@@ -62,6 +62,7 @@ $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <<< </a>
                     <a class="btn-blue" href="/earthwise/edit.php?id=<?= $project['id'] ?>">edit</a>
                     <a class="btn-blue" href="/earthwise/delete.php?id=<?= $project['id'] ?>">delete</a>
+                    <button id="submitToBlockchain" class="btn btn-primary">Submit to Blockchain</button>
         </div>
     <?php else : ?>
         <div class="pt-2rem">
@@ -93,4 +94,4 @@ $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php }; ?>
 </div>
 
-<?php
+<script src="js/sendToBlock.js"></script>
