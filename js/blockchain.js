@@ -61,13 +61,13 @@ scene.add(fireSphere);
 scene.add(waterSphere);
 
 
-physSphere.userData.url = "http://localhost/earthwise/view.php?id=4";
-medSphere.userData.url = "http://localhost/earthwise/view.php?id=5";
-ecoSphere.userData.url = "http://localhost/earthwise/view.php?id=6";
-earthSphere.userData.url = "http://localhost/earthwise/view.php?id=7";
-stoneSphere.userData.url = "http://localhost/earthwise/view.php?id=8";
-fireSphere.userData.url = "http://localhost/earthwise/view.php?id=9";
-waterSphere.userData.url = "http://localhost/earthwise/view.php?id=10";
+physSphere.userData.url = "https://epsi.rocks/view.php?id=4";
+medSphere.userData.url = "https://epsi.rocks/view.php?id=5";
+ecoSphere.userData.url = "https://epsi.rocks/view.php?id=6";
+earthSphere.userData.url = "https://epsi.rocks/view.php?id=7";
+stoneSphere.userData.url = "https://epsi.rocks/view.php?id=8";
+fireSphere.userData.url = "https://epsi.rocks/view.php?id=9";
+waterSphere.userData.url = "https://epsi.rocks/view.php?id=10";
 
 
 function createCurvedLineBetweenObjects(object1, object2, segments, color, yOffset) {
