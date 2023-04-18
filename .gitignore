@@ -1,4 +1,3 @@
-*.log
-node_modules/
-./php/config.php/
+*node_modules/*
+*php/config.php*
 
