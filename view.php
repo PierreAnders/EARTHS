@@ -60,8 +60,8 @@ $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="pt-2rem">
             <a href="home.php " class="btn-blue">
                 <<< </a>
-                    <a class="btn-blue" href="/earthwise/edit.php?id=<?= $project['id'] ?>">edit</a>
-                    <a class="btn-blue" href="/earthwise/delete.php?id=<?= $project['id'] ?>">delete</a>
+                    <a class="btn-blue" href="/edit.php?id=<?= $project['id'] ?>">edit</a>
+                    <a class="btn-blue" href="/delete.php?id=<?= $project['id'] ?>">delete</a>
                     <button id="submitToBlockchain" class="btn btn-primary">Submit to Blockchain</button>
         </div>
     <?php else : ?>
@@ -83,7 +83,7 @@ $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php if ($userId) { ?>
         <h3 class="pt-2rem">Add a comment:</h3>
-        <form method="POST" action="/earthwise/create-comment.php">
+        <form method="POST" action="/create-comment.php">
             <input type="hidden" name="project_id" value="<?= $project['id'] ?>">
             <div>
                 <label for="comment">Comment:
